@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\EverlongSettingsVersion.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Everlong.Settings</RootNamespace>
+    <PackageId>Everlong.Settings</PackageId>
+    <Authors>Richard Zheng</Authors>
+    <Copyright>Copyright © 2026 Everlong Technology</Copyright>
+    <Company>Everlong Technology</Company>
+    <Description>Standalone settings/source-generated config system. Runtime types for [Settings], [Section], [Setting], [Coercion] attributes, ISettingsStore, PropertyBacker, SettingsSnapshot, and thread-safe store base.</Description>
+    <PackageTags>Settings;Configuration;SourceGenerator;AOT</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>CS1591;$(NoWarn)</NoWarn>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' != 'Debug'">true</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/omrzh/Everlong.Settings</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/omrzh/Everlong.Settings.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <!-- Zero external dependencies — pure BCL types only -->
+  <!-- System.ComponentModel.Annotations: consumers may use [Range], [MaxLength] etc.,
+       but they are resolved at compile-time by the generator, not required at runtime. -->
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="icon.png" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+  <!-- Source Generators -->
+  <ItemGroup>
+    <ProjectReference Include="..\Everlong.Settings.Generators\Everlong.Settings.Generators.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" PrivateAssets="All" />
+    <ProjectReference Include="..\Everlong.Settings.CodeFixers\Everlong.Settings.CodeFixers.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Everlong.Settings.Generators\bin\$(Configuration)\netstandard2.0\Everlong.Settings.Generators.dll" PackagePath="analyzers/dotnet/cs" Pack="true" Visible="false" />
+    <None Include="..\Everlong.Settings.CodeFixers\bin\$(Configuration)\netstandard2.0\Everlong.Settings.CodeFixers.dll" PackagePath="analyzers/dotnet/cs" Pack="true" Visible="false" />
+    <None Include="buildTransitive\Everlong.Settings.targets" Pack="true" PackagePath="buildTransitive\" Visible="false" />
+  </ItemGroup>
+</Project>

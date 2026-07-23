@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <SettingsVersion>0.0.1</SettingsVersion>
+    <Version>$(SettingsVersion)</Version>
+    <FileVersion>$(SettingsVersion)</FileVersion>
+    <AssemblyVersion>$(SettingsVersion)</AssemblyVersion>
+  </PropertyGroup>
+</Project>

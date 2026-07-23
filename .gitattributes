@@ -1,0 +1,21 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# C# files
+*.cs text diff=csharp
+
+# XML project files
+*.csproj text
+*.slnx text
+*.props text
+*.targets text
+
+# Markdown
+*.md text diff=markdown
+
+# Images
+*.png binary
+*.ico binary
+
+# NuGet
+*.nupkg binary

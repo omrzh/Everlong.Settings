@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Everlong.Settings/Everlong.Settings.csproj" />
+    <Project Path="src/Everlong.Settings.Generators/Everlong.Settings.Generators.csproj" />
+    <Project Path="src/Everlong.Settings.CodeFixers/Everlong.Settings.CodeFixers.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Everlong.Settings.Generators.Tests/Everlong.Settings.Generators.Tests.csproj" />
+    <Project Path="tests/Everlong.Settings.CodeFixers.Tests/Everlong.Settings.CodeFixers.Tests.csproj" />
+  </Folder>
+  <Folder Name="/SolutionItems/">
+    <File Path="EverlongSettingsVersion.props" />
+    <File Path="README.md" />
+    <File Path="LICENSE" />
+    <File Path=".gitignore" />
+    <File Path=".gitattributes" />
+    <File Path="publish.ps1" />
+  </Folder>
+</Solution>
