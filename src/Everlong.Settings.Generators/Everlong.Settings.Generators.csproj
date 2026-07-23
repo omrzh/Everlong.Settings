@@ -11,6 +11,7 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <RootNamespace>Everlong.Settings.Generators</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>RS2007;$(NoWarn)</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,4 +21,9 @@
   </ItemGroup>
 
   <!-- No direct reference to Everlong.Settings runtime — the generator matches attributes by FQN string. -->
+
+  <ItemGroup>
+    <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
+    <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
+  </ItemGroup>
 </Project>

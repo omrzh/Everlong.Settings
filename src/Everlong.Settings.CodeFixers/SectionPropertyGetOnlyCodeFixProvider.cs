@@ -13,7 +13,7 @@ using Everlong.Settings.Generators;
 namespace Everlong.Settings.CodeFixers;
 
 /// <summary>
-/// Code fix for NSTR2002 — removes the setter accessor from a <c>[Section]</c> property.
+/// Code fix for ELST2002 — removes the setter accessor from a <c>[Section]</c> property.
 /// </summary>
 [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SectionPropertyGetOnlyCodeFixProvider)), Shared]
 public sealed class SectionPropertyGetOnlyCodeFixProvider : CodeFixProvider

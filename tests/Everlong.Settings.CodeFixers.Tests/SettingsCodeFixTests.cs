@@ -35,10 +35,10 @@ public class SettingsCodeFixTests
     }
     """;
 
-  // ── NSTR2002: Remove setter from [Section] property ──────────────────
+  // ── ELST2002: Remove setter from [Section] property ──────────────────
 
   [Fact]
-  public async Task Fix_NSTR2002_RemovesSetter()
+  public async Task Fix_ELST2002_RemovesSetter()
   {
     const string test = """
       using Everlong.Settings;
@@ -52,7 +52,7 @@ public class SettingsCodeFixTests
           public partial class AppSettings
           {
               [Section]
-              public SoundSettings {|NSTR2002:Sound|} { get; set; }
+              public SoundSettings {|ELST2002:Sound|} { get; set; }
           }
       }
       """;
@@ -80,7 +80,7 @@ public class SettingsCodeFixTests
   }
 
   [Fact]
-  public async Task Fix_NSTR2002_RemovesInitSetter()
+  public async Task Fix_ELST2002_RemovesInitSetter()
   {
     const string test = """
       using Everlong.Settings;
@@ -94,7 +94,7 @@ public class SettingsCodeFixTests
           public partial class AppSettings
           {
               [Section]
-              public SoundSettings {|NSTR2002:Sound|} { get; init; }
+              public SoundSettings {|ELST2002:Sound|} { get; init; }
           }
       }
       """;
@@ -121,13 +121,13 @@ public class SettingsCodeFixTests
       fixedCode + SettingsAttributeStubs + IsExternalInitStub);
   }
 
-  // ── NSTR2004: Make [Section] property partial ─────────────────────────
+  // ── ELST2004: Make [Section] property partial ─────────────────────────
   // Note: the fixed code uses partial properties (C# 13) which Roslyn 4.8.0 cannot
   // compile. We use CSharpCodeFixTest directly with CompilerDiagnostics.None to
   // verify the fix produces the correct source without checking compilation.
 
   [Fact]
-  public async Task Fix_NSTR2004_AddsPartialToProperty()
+  public async Task Fix_ELST2004_AddsPartialToProperty()
   {
     const string testCode = """
       using Everlong.Settings;
@@ -141,7 +141,7 @@ public class SettingsCodeFixTests
           public partial class AppSettings
           {
               [Section]
-              public SoundSettings {|NSTR2004:Sound|} { get; }
+              public SoundSettings {|ELST2004:Sound|} { get; }
           }
       }
       """ + SettingsAttributeStubs;

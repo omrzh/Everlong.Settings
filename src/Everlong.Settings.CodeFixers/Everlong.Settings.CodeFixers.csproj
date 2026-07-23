@@ -9,6 +9,7 @@
     <IsPackable>false</IsPackable>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <RootNamespace>Everlong.Settings.CodeFixers</RootNamespace>
+    <NoWarn>RS2008;$(NoWarn)</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

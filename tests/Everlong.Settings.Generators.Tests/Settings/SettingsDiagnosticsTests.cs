@@ -12,7 +12,7 @@ using VerifySettingsAnalyzer = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnaly
 
 namespace Everlong.Settings.Generators.Tests.Settings;
 
-/// <summary>Tests for NSTR0007 on [Settings]/[Section] classes, and NSTR2002/2004 on properties.</summary>
+/// <summary>Tests for ELST0007 on [Settings]/[Section] classes, and ELST2002/2004 on properties.</summary>
 public class SettingsDiagnosticsTests
 {
   // Minimal stubs — just the attribute declarations the analyzers look for by FQN.
@@ -25,10 +25,10 @@ public class SettingsDiagnosticsTests
     }
     """;
 
-  // ── NSTR0007: [Settings] class must be partial ───────────────────────
+  // ── ELST0007: [Settings] class must be partial ───────────────────────
 
   [Fact]
-  public async Task Report_NSTR0007_When_Settings_Class_NotPartial()
+  public async Task Report_ELST0007_When_Settings_Class_NotPartial()
   {
     const string test = """
       using Everlong.Settings;
@@ -36,7 +36,7 @@ public class SettingsDiagnosticsTests
       namespace TestApp
       {
           [Settings]
-          public class {|NSTR0007:AppSettings|} {}
+          public class {|ELST0007:AppSettings|} {}
       }
       """;
 
@@ -59,10 +59,10 @@ public class SettingsDiagnosticsTests
     await VerifyPartialAnalyzer.VerifyAnalyzerAsync(test + SettingsAttributeStubs);
   }
 
-  // ── NSTR0007: [Section] class must be partial ────────────────────────
+  // ── ELST0007: [Section] class must be partial ────────────────────────
 
   [Fact]
-  public async Task Report_NSTR0007_When_Section_Class_NotPartial()
+  public async Task Report_ELST0007_When_Section_Class_NotPartial()
   {
     const string test = """
       using Everlong.Settings;
@@ -70,7 +70,7 @@ public class SettingsDiagnosticsTests
       namespace TestApp
       {
           [Section]
-          public class {|NSTR0007:SoundSettings|} {}
+          public class {|ELST0007:SoundSettings|} {}
       }
       """;
 
@@ -93,10 +93,10 @@ public class SettingsDiagnosticsTests
     await VerifyPartialAnalyzer.VerifyAnalyzerAsync(test + SettingsAttributeStubs);
   }
 
-  // ── NSTR2002: [Section] property must be get-only ────────────────────
+  // ── ELST2002: [Section] property must be get-only ────────────────────
 
   [Fact]
-  public async Task Report_NSTR2002_When_Section_Property_HasSetter()
+  public async Task Report_ELST2002_When_Section_Property_HasSetter()
   {
     // Note: 'partial' is omitted here since partial properties (C# 13) aren't needed
     // for testing the setter detection. The analyzer looks for [Section] + setter only.
@@ -112,7 +112,7 @@ public class SettingsDiagnosticsTests
           public partial class AppSettings
           {
               [Section]
-              public SoundSettings {|NSTR2002:Sound|} { get; set; }
+              public SoundSettings {|ELST2002:Sound|} { get; set; }
           }
       }
       """;
@@ -121,7 +121,7 @@ public class SettingsDiagnosticsTests
   }
 
   [Fact]
-  public async Task NoReport_NSTR2002_When_Section_Property_IsGetOnly()
+  public async Task NoReport_ELST2002_When_Section_Property_IsGetOnly()
   {
     const string test = """
       using Everlong.Settings;
@@ -143,10 +143,10 @@ public class SettingsDiagnosticsTests
     await VerifySettingsAnalyzer.VerifyAnalyzerAsync(test + SettingsAttributeStubs);
   }
 
-  // ── NSTR2004: [Section] property must be partial ─────────────────────
+  // ── ELST2004: [Section] property must be partial ─────────────────────
 
   [Fact]
-  public async Task Report_NSTR2004_When_Section_Property_NotPartial()
+  public async Task Report_ELST2004_When_Section_Property_NotPartial()
   {
     const string test = """
       using Everlong.Settings;
@@ -160,7 +160,7 @@ public class SettingsDiagnosticsTests
           public partial class AppSettings
           {
               [Section]
-              public SoundSettings {|NSTR2004:Sound|} { get; }
+              public SoundSettings {|ELST2004:Sound|} { get; }
           }
       }
       """;
@@ -169,9 +169,9 @@ public class SettingsDiagnosticsTests
   }
 
   [Fact]
-  public async Task NoReport_NSTR2004_When_Property_HasNoSectionAttribute()
+  public async Task NoReport_ELST2004_When_Property_HasNoSectionAttribute()
   {
-    // Guard test: properties without [Section] must never trigger NSTR2004,
+    // Guard test: properties without [Section] must never trigger ELST2004,
     // even when they also lack 'partial'.
     const string test = """
       using Everlong.Settings;

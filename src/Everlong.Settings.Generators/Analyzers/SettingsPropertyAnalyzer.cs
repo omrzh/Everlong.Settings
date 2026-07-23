@@ -1,7 +1,7 @@
 namespace Everlong.Settings.Generators.Analyzers;
 
 /// <summary>
-/// Reports <c>NSTR2002</c> when a <c>[Section]</c>-annotated property has a setter.
+/// Reports <c>ELST2002</c> when a <c>[Section]</c>-annotated property has a setter.
 /// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class SettingsPropertyAnalyzer : DiagnosticAnalyzer

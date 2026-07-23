@@ -22,14 +22,14 @@ public sealed class PartialKeywordAnalyzer : DiagnosticAnalyzer
 
   private static void AnalyzeNode(SyntaxNodeAnalysisContext context)
   {
-    // NSTR2004: [Section] property must be partial
+    // ELST2004: [Section] property must be partial
     if (context.Node is PropertyDeclarationSyntax propDecl)
     {
       AnalyzePropertyNode(context, propDecl);
       return;
     }
 
-    // NSTR0007: type annotated for generation must be partial
+    // ELST0007: type annotated for generation must be partial
     if (context.Node is TypeDeclarationSyntax typeDecl)
       AnalyzeTypeNode(context, typeDecl);
   }

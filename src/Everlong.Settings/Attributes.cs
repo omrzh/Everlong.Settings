@@ -60,7 +60,7 @@ public sealed class SettingAttribute : Attribute
 
   /// <summary>
   /// Enum-typed fallback. Passing any non-enum value will cause the source generator
-  /// to emit a <c>NSTR2001</c> diagnostic error.
+  /// to emit a <c>ELST2001</c> diagnostic error.
   /// </summary>
   public SettingAttribute(object fallback) { }
 }

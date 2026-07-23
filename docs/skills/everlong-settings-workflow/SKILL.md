@@ -90,7 +90,7 @@ public partial class AppSettings : ISettingsRoot
 | Class-level `[Section]` | `partial` class; no interface needed (`ISettingsSection` is auto-implemented by the generator) |
 | Property-level `[Section]` | `partial` property, **get-only** (no `set` or `init`), type must be a `[Section]` or `[Settings]` class |
 
-**The property-level `[Section]` property must not have a setter.** If it does, the `SettingsPropertyAnalyzer` reports NSTR2002 at compile time. If it also lacks `partial`, `PartialKeywordAnalyzer` reports NSTR2004.
+**The property-level `[Section]` property must not have a setter.** If it does, the `SettingsPropertyAnalyzer` reports ELST2002 at compile time. If it also lacks `partial`, `PartialKeywordAnalyzer` reports ELST2004.
 
 ### 1.3 `[Setting]` — a single settings value
 
@@ -119,7 +119,7 @@ public partial class AppSettings : ISettingsRoot
 private static partial string[] GetTagsDefault();  // you implement this
 ```
 
-If you pass a primitive fallback to a complex-typed `[Setting]`, the generator reports NSTR2001.
+If you pass a primitive fallback to a complex-typed `[Setting]`, the generator reports ELST2001.
 
 ### 1.4 `[Coercion]` — custom value transformation
 
@@ -357,11 +357,11 @@ No CLI tool is bundled with `Everlong.Settings` — settings are configured pure
 
 | Forbidden | Why |
 |-----------|-----|
-| `[Settings]` or `[Section]` on a non-`partial` class | Generator can't inject code; compilation fails with CS0260. The analyzer catches this at IDE time (NSTR0007). |
+| `[Settings]` or `[Section]` on a non-`partial` class | Generator can't inject code; compilation fails with CS0260. The analyzer catches this at IDE time (ELST0007). |
 | Never calling `((ISettingsRoot)settings).Initialize(store)` | The generator implements `ISettingsRoot` automatically, but if nobody calls `Initialize()`, backers never wire to a store. All settings silently return fallbacks at runtime. |
-| `[Section]` property with a setter | The generator expects get-only partial properties. NSTR2002 reports this at compile time. |
-| `[Section]` property without `partial` | Generator can't emit the accessor body. NSTR2004. |
-| Passing a primitive fallback to a complex-typed `[Setting]` | Generator emits NSTR2001 diagnostic. Complex types use `static partial GetXxxDefault()`. |
+| `[Section]` property with a setter | The generator expects get-only partial properties. ELST2002 reports this at compile time. |
+| `[Section]` property without `partial` | Generator can't emit the accessor body. ELST2004. |
+| Passing a primitive fallback to a complex-typed `[Setting]` | Generator emits ELST2001 diagnostic. Complex types use `static partial GetXxxDefault()`. |
 | Calling `ISettingsSection.Initialize()` manually | The generator emits `Initialize()` that wires backers correctly. Calling it yourself mid-lifecycle re-pulls values from the store and overwrites any unsaved changes. Use `Snapshot()` + `Commit()` for controlled updates. |
 | Holding a reference to `PropertyBacker<T>` directly | `PropertyBacker` is an implementation detail of the generated code. Read/write settings through the partial property. |
 | Subclassing `SettingsStoreBase` without calling `FlushAsync()` on shutdown | Background writes may be lost. Always `DisposeAsync()` the store when the application exits. |

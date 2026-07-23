@@ -26,7 +26,7 @@ public class PartialKeywordCodeFixProvider : CodeFixProvider
     var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
     if (root == null) return;
 
-    // NSTR0007: class/type must be partial
+    // ELST0007: class/type must be partial
     var classPartialDiag = context.Diagnostics.FirstOrDefault(d => d.Id == Descriptors.ClassPartialId);
     if (classPartialDiag != null)
     {
@@ -46,7 +46,7 @@ public class PartialKeywordCodeFixProvider : CodeFixProvider
       }
     }
 
-    // NSTR2004: [Section] property must be partial
+    // ELST2004: [Section] property must be partial
     var propPartialDiag = context.Diagnostics.FirstOrDefault(d => d.Id == Descriptors.SectionPropertyMustBePartialId);
     if (propPartialDiag != null)
     {
